@@ -9,6 +9,7 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.RecyclerView.ViewHolder;
@@ -72,7 +73,7 @@ public class PlacesActivity extends AppCompatActivity {
     private class PlacesListAdapter extends RecyclerView.Adapter<PlaceItemViewHolder> {
         @Override
         public PlaceItemViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-            View v = (View) LayoutInflater.from(parent.getContext()).inflate(android.R.layout.two_line_list_item, parent, false);
+            View v = (View) LayoutInflater.from(parent.getContext()).inflate(R.layout.two_line_list_item, parent, false);
                 // https://github.com/aosp-mirror/platform_frameworks_base/tree/master/core/res/res/layout
                 // https://github.com/aosp-mirror/platform_frameworks_base/blob/master/core/res/res/layout/two_line_list_item.xml
             return new PlaceItemViewHolder(v);
@@ -233,6 +234,14 @@ public class PlacesActivity extends AppCompatActivity {
         places_recyclerView.setLayoutManager(new LinearLayoutManager(PlacesActivity.this));
         places_recyclerView.setHasFixedSize(true);
         places_recyclerView.setAdapter(places_arrayAdapter);
+
+        // add divider between list items
+        places_recyclerView.addItemDecoration(
+            new DividerItemDecoration(
+                    PlacesActivity.this,
+                    DividerItemDecoration.VERTICAL
+                )
+        );
     }
 
     private void initSort() {
