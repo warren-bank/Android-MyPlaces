@@ -3,6 +3,7 @@ package com.github.warren_bank.myplaces;
 import com.github.warren_bank.myplaces.models.WaypointListItem;
 
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -17,6 +18,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -194,7 +196,7 @@ public class PlacesActivity extends AppCompatActivity {
         places_arrayAdapter = new PlacesListAdapter();
         places_recyclerView = (RecyclerView)findViewById(R.id.rv_places);
 
-        places_recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        places_recyclerView.setLayoutManager(new LinearLayoutManager(PlacesActivity.this));
         places_recyclerView.setHasFixedSize(true);
         places_recyclerView.setAdapter(places_arrayAdapter);
     }
@@ -238,8 +240,26 @@ public class PlacesActivity extends AppCompatActivity {
     }
 
     private void viewPlace(WaypointListItem place) {
-        String uri = "geo:" + place.lat + "," + place.lon;
-        Intent in  = new Intent(Intent.ACTION_VIEW, Uri.parse(uri));
-        startActivity(in);
+        String uri;
+        Intent in;
+        PackageManager pm = getPackageManager();
+
+        // navigation
+        uri = "google.navigation:q=" + place.lat + "," + place.lon;
+        in  = new Intent(Intent.ACTION_VIEW, Uri.parse(uri));
+        if (in.resolveActivity(pm) != null) {
+            startActivity(in);
+            return;
+        }
+
+        // mapping
+        uri = "geo:" + place.lat + "," + place.lon;
+        in  = new Intent(Intent.ACTION_VIEW, Uri.parse(uri));
+        if (in.resolveActivity(pm) != null) {
+            startActivity(in);
+            return;
+        }
+
+        Toast.makeText(PlacesActivity.this, "No mapping app found", Toast.LENGTH_SHORT).show();
     }
 }
