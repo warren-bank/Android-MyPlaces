@@ -4,6 +4,8 @@ import com.github.warren_bank.myplaces.parsers.AbstractParser;
 import com.github.warren_bank.myplaces.parsers.GpxParser;
 import com.github.warren_bank.myplaces.parsers.KmlParser;
 
+import android.location.Location;
+
 import java.util.ArrayList;
 import java.util.Comparator;
 
@@ -11,17 +13,33 @@ public class WaypointListItem {
     public final String lat;
     public final String lon;
     public final String name;
-    public final int nonce;
 
-    public float distance;
+    protected final int nonce;
+    protected final Location location;
+
+    public float distance;  // meters
 
     public WaypointListItem(String lat, String lon, String name, int nonce) {
         if (name == null) name = "[undefined]";
 
-        this.lat   = lat;
-        this.lon   = lon;
-        this.name  = name;
-        this.nonce = nonce;
+        this.lat      = lat;
+        this.lon      = lon;
+        this.name     = name;
+        this.nonce    = nonce;
+        this.location = new Location("MyPlaces");
+
+        this.location.setLatitude(
+            Location.convert(lat)
+        );
+        this.location.setLongitude(
+            Location.convert(lon)
+        );
+
+        this.distance = 0;
+    }
+
+    public void updateDistance(Location currentPosition) {
+        distance = currentPosition.distanceTo(location);
     }
 
     @Override

@@ -1,6 +1,7 @@
 package com.github.warren_bank.myplaces;
 
 import com.github.warren_bank.myplaces.models.WaypointListItem;
+import com.github.warren_bank.myplaces.services.PlacesLocationManager;
 
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -33,10 +34,13 @@ public class PlacesActivity extends AppCompatActivity {
 
     private static enum SORT_OPTION { SEQUENTIAL, ALPHABETIC, DISTANCE }
 
-    private String filepath;
-    private String filename;
-    private String format;
-    private SORT_OPTION sort_order;
+    private String                      filepath;
+    private String                      filename;
+    private String                      format;
+    private SORT_OPTION                 sort_order;
+    private PlacesLocationManager       places_locationManager;
+
+    private static final int GPS_INTERVAL = (60 * 5);  // 5 minutes, this is the period of time between GPS updates when sort_order is based on distance from the current location
 
     // ---------------------------------------------------------------------------------------------
     // RecyclerView:
@@ -47,12 +51,14 @@ public class PlacesActivity extends AppCompatActivity {
     private PlacesListAdapter           places_arrayAdapter;
 
     private class PlaceItemViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        public final TextView textView;
+        public final TextView textView_1;
+        public final TextView textView_2;
 
-        public PlaceItemViewHolder(TextView textView) {
-            super(textView);
-            this.textView = textView;
-            textView.setOnClickListener(this);
+        public PlaceItemViewHolder(View v) {
+            super(v);
+            this.textView_1 = v.findViewById(android.R.id.text1);
+            this.textView_2 = v.findViewById(android.R.id.text2);
+            v.setOnClickListener(this);
         }
 
         @Override
@@ -66,17 +72,24 @@ public class PlacesActivity extends AppCompatActivity {
     private class PlacesListAdapter extends RecyclerView.Adapter<PlaceItemViewHolder> {
         @Override
         public PlaceItemViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-            TextView textView = (TextView) LayoutInflater.from(parent.getContext()).inflate(android.R.layout.simple_list_item_1, parent, false);
+            View v = (View) LayoutInflater.from(parent.getContext()).inflate(android.R.layout.two_line_list_item, parent, false);
                 // https://github.com/aosp-mirror/platform_frameworks_base/tree/master/core/res/res/layout
-                // https://github.com/aosp-mirror/platform_frameworks_base/blob/master/core/res/res/layout/simple_list_item_1.xml
-            return new PlaceItemViewHolder(textView);
+                // https://github.com/aosp-mirror/platform_frameworks_base/blob/master/core/res/res/layout/two_line_list_item.xml
+            return new PlaceItemViewHolder(v);
         }
 
         @Override
         public void onBindViewHolder(PlaceItemViewHolder holder, int position) {
             WaypointListItem place = places_arrayList.get(position);
-            TextView view = holder.textView;
-            view.setText(place.name);
+            holder.textView_1.setText(place.name);
+
+            if (sort_order == SORT_OPTION.DISTANCE) {
+                holder.textView_2.setText(place.distance + " meters");
+                holder.textView_2.setVisibility(View.VISIBLE);
+            }
+            else {
+                holder.textView_2.setVisibility(View.GONE);
+            }
         }
 
         @Override
@@ -102,6 +115,25 @@ public class PlacesActivity extends AppCompatActivity {
 
         // RecyclerView
         initRecyclerView();
+
+        // sort
+        initSort();
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+
+        places_locationManager.clearInterval();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+
+        if (sort_order == SORT_OPTION.DISTANCE) {
+            places_locationManager.setInterval(GPS_INTERVAL);
+        }
     }
 
     // ---------------------------------------------------------------------------------------------
@@ -123,6 +155,7 @@ public class PlacesActivity extends AppCompatActivity {
 
             case R.id.action_sort_sequential: {
                 sort_order = SORT_OPTION.SEQUENTIAL;  // the sequential order in which places naturally occur in the XML file
+                places_locationManager.clearInterval();
                 sortRecyclerView();
                 invalidateOptionsMenu();
                 return true;
@@ -130,6 +163,7 @@ public class PlacesActivity extends AppCompatActivity {
 
             case R.id.action_sort_alphabetic: {
                 sort_order = SORT_OPTION.ALPHABETIC;
+                places_locationManager.clearInterval();
                 sortRecyclerView();
                 invalidateOptionsMenu();
                 return true;
@@ -137,16 +171,16 @@ public class PlacesActivity extends AppCompatActivity {
 
             case R.id.action_sort_distance: {
                 sort_order = SORT_OPTION.DISTANCE;
-                calculateDistance();
-                sortRecyclerView();
+                sortRecyclerView();                 // (a) perform an immediate sort based on previously calculated distances,
+                                                    // (b) when an updated position is received, then recalculate all distances and sort again
+                places_locationManager.setInterval(GPS_INTERVAL);
                 invalidateOptionsMenu();
                 return true;
             }
 
             case R.id.action_sort_refresh: {
                 if (sort_order == SORT_OPTION.DISTANCE) {
-                    calculateDistance();
-                    sortRecyclerView();
+                    places_locationManager.refresh();
                 }
                 return true;
             }
@@ -201,6 +235,17 @@ public class PlacesActivity extends AppCompatActivity {
         places_recyclerView.setAdapter(places_arrayAdapter);
     }
 
+    private void initSort() {
+        // order immediately after data is extracted from file
+        sort_order = SORT_OPTION.SEQUENTIAL;
+
+        places_locationManager = new PlacesLocationManager(
+            PlacesActivity.this,
+            places_arrayList,
+            places_arrayAdapter
+        );
+    }
+
     private void sortRecyclerView() {
         final Comparator comparator;
 
@@ -233,10 +278,6 @@ public class PlacesActivity extends AppCompatActivity {
                 places_arrayAdapter.notifyDataSetChanged();
             }
         }.execute();
-    }
-
-    // to do
-    private void calculateDistance() {
     }
 
     private void viewPlace(WaypointListItem place) {
