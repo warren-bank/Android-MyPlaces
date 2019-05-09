@@ -1,5 +1,6 @@
 package com.github.warren_bank.myplaces;
 
+import com.github.warren_bank.myplaces.helpers.DistanceFormatter;
 import com.github.warren_bank.myplaces.models.WaypointListItem;
 import com.github.warren_bank.myplaces.services.PlacesLocationManager;
 
@@ -85,7 +86,14 @@ public class PlacesActivity extends AppCompatActivity {
             holder.textView_1.setText(place.name);
 
             if (sort_order == SORT_OPTION.DISTANCE) {
-                holder.textView_2.setText(place.distance + " meters");
+                if (place.distance == 0) {
+                    holder.textView_2.setText("finding current location..");
+                }
+                else {
+                    holder.textView_2.setText(
+                        DistanceFormatter.format((int)place.distance)  // cast float to int
+                    );
+                }
                 holder.textView_2.setVisibility(View.VISIBLE);
             }
             else {

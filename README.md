@@ -28,6 +28,8 @@ Android app that reads standard GPX and KML file formats as organized collection
   * the Activity that allows the user to choose a directory
 * uses [jOOX](https://github.com/jOOQ/jOOX) by [jOOQ](https://github.com/jOOQ) with [Apache-2.0](http://www.apache.org/licenses/LICENSE-2.0) license
   * an XML parser with an API very similar to jQuery that is used to extract data from GPX and KML files
+* uses [DistanceFormatter](https://github.com/mapzen/on-the-road_android/blob/d4671937bb0ba03a5fad69968afbd493927e273a/library/src/main/java/com/mapzen/helpers/DistanceFormatter.java) by [Mapzen](https://github.com/mapzen) with [Apache-2.0](http://www.apache.org/licenses/LICENSE-2.0) license
+  * a standalone static class that converts a numeric distance to a formatted String for a chosen unit of measure
 
 #### Legal:
 

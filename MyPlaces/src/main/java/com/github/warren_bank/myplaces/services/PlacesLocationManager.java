@@ -66,7 +66,7 @@ public class PlacesLocationManager {
             interval = seconds;
 
             long minTime      = seconds * 1000;  // milliseconds
-            float minDistance = 15;              // 15 meters is about 50 ft
+            float minDistance = 1.5f;            // 1.5 meters is about 5 ft
             locationManager.requestLocationUpdates(
                 LocationManager.GPS_PROVIDER,
                 minTime,
