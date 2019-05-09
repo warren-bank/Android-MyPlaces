@@ -294,7 +294,21 @@ public class PlacesActivity extends AppCompatActivity {
         Intent in;
         PackageManager pm = getPackageManager();
 
-        // navigation
+        // search:
+        //     format: "geo:0,0?q=latitude,longitude(label)"
+        //     G-Maps: https://developers.google.com/maps/documentation/urls/android-intents#search_for_a_location
+        //     OsmAnd: https://github.com/osmandapp/Osmand/blob/f9cd73d4f02b45c429a94e5444124cc6f3463111/OsmAnd/AndroidManifest.xml#L357
+        uri = "geo:0,0?q=" + place.lat + "," + place.lon + "(" + Uri.encode(place.name).replace("(","%28").replace(")","%29") + ")";
+        in  = new Intent(Intent.ACTION_VIEW, Uri.parse(uri));
+        if (in.resolveActivity(pm) != null) {
+            startActivity(in);
+            return;
+        }
+
+        // navigation:
+        //     format: "google.navigation:q=latitude,longitude"
+        //     G-Maps: https://developers.google.com/maps/documentation/urls/android-intents#launch_turn-by-turn_navigation
+        //     OsmAnd: https://github.com/osmandapp/Osmand/blob/f9cd73d4f02b45c429a94e5444124cc6f3463111/OsmAnd/AndroidManifest.xml#L289
         uri = "google.navigation:q=" + place.lat + "," + place.lon;
         in  = new Intent(Intent.ACTION_VIEW, Uri.parse(uri));
         if (in.resolveActivity(pm) != null) {
@@ -302,7 +316,10 @@ public class PlacesActivity extends AppCompatActivity {
             return;
         }
 
-        // mapping
+        // mapping:
+        //     format: "geo:latitude,longitude?z=zoom"
+        //     G-Maps: https://developers.google.com/maps/documentation/urls/android-intents#display_a_map
+        //     OsmAnd: https://github.com/osmandapp/Osmand/blob/f9cd73d4f02b45c429a94e5444124cc6f3463111/OsmAnd/AndroidManifest.xml#L357
         uri = "geo:" + place.lat + "," + place.lon;
         in  = new Intent(Intent.ACTION_VIEW, Uri.parse(uri));
         if (in.resolveActivity(pm) != null) {
