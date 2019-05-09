@@ -1,0 +1,52 @@
+apply from: '../constants.gradle'
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion project.ext.compileSdkVersion
+    buildToolsVersion project.ext.buildToolsVersion
+
+    compileOptions {
+        sourceCompatibility project.ext.javaVersion
+        targetCompatibility project.ext.javaVersion
+    }
+
+    defaultConfig {
+        minSdkVersion project.ext.minSdkVersion
+        targetSdkVersion project.ext.targetSdkVersion
+
+        applicationId "com.github.warren_bank.myplaces"
+        versionName project.ext.releaseVersion
+        versionCode project.ext.releaseVersionCode
+    }
+
+    lintOptions {
+        disable 'MissingTranslation'
+        abortOnError true
+    }
+
+    buildTypes {
+        release {
+            shrinkResources true
+            minifyEnabled true
+            proguardFiles = [
+                "proguard-rules.txt",
+                getDefaultProguardFile('proguard-android.txt')
+            ]
+        }
+        debug {
+            jniDebuggable = true
+        }
+    }
+}
+
+dependencies {
+    implementation project(':Android-DirectoryChooser-library')
+
+    implementation 'com.android.support:appcompat-v7:'    + project.ext.supportLibraryVersion     // (  1 MB) https://mvnrepository.com/artifact/com.android.support/appcompat-v7?repo=google
+    implementation 'com.android.support:recyclerview-v7:' + project.ext.supportLibraryVersion     // (347 KB) https://mvnrepository.com/artifact/com.android.support/recyclerview-v7?repo=google
+    implementation 'com.android.support:design:'          + project.ext.supportLibraryVersion     // (566 KB) https://mvnrepository.com/artifact/com.android.support/design?repo=google
+
+    implementation 'org.jooq:joox-java-6:1.6.1'                                                   // (124 KB) https://mvnrepository.com/artifact/org.jooq/joox-java-6
+}
+
+apply plugin: 'com.google.android.gms.strict-version-matcher-plugin'

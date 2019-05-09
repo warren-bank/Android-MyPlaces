@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">MyPlaces</string>
+
+    <string name="action_exit">Exit</string>
+
+    <string name="action_change_directory">Change Directory</string>
+
+    <string name="action_sort_refresh">Refresh Sort</string>
+    <string name="action_sort_sequential">Sort Sequentially</string>
+    <string name="action_sort_alphabetic">Sort Alphabetic</string>
+    <string name="action_sort_distance">Sort by Distance</string>
+</resources>
