@@ -188,8 +188,6 @@ public class MainActivity extends AppCompatActivity {
         final DirectoryChooserConfig config = DirectoryChooserConfig.builder()
                   .initialDirectory(initialDirectory)
                   .allowReadOnlyDirectory(true)
-                  .allowNewDirectoryNameModification(true)
-                  .newDirectoryName("New Folder")
                   .build();
 
         in.putExtra(
