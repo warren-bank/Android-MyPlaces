@@ -2,22 +2,24 @@ package com.github.warren_bank.myplaces.services;
 
 import com.github.warren_bank.myplaces.models.WaypointListItem;
 
+import com.github.warren_bank.filterablerecyclerview.FilterableListItem;
+import com.github.warren_bank.filterablerecyclerview.FilterableAdapter;
+
 import android.content.Context;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.v7.widget.RecyclerView;
 
-import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 
 public class PlacesLocationManager {
     private Context                     context;
     private LocationManager             locationManager;
-    private ArrayList<WaypointListItem> places_arrayList;
-    private RecyclerView.Adapter        places_arrayAdapter;
+    private List<FilterableListItem>    unfilteredList;
+    private FilterableAdapter           recyclerFilterableAdapter;
     private PlacesLocationListener      places_locationListener;
     private int                         interval;
 
@@ -42,15 +44,15 @@ public class PlacesLocationManager {
 
     public PlacesLocationManager(
         Context                     context,
-        ArrayList<WaypointListItem> places_arrayList,
-        RecyclerView.Adapter        places_arrayAdapter
+        List<FilterableListItem>    unfilteredList,
+        FilterableAdapter           recyclerFilterableAdapter
     ) {
-        this.context                  = context;
-        this.locationManager          = (LocationManager)context.getSystemService(Context.LOCATION_SERVICE);
-        this.places_arrayList         = places_arrayList;
-        this.places_arrayAdapter      = places_arrayAdapter;
-        this.places_locationListener  = new PlacesLocationListener();
-        this.interval                 = 0;
+        this.context                   = context;
+        this.locationManager           = (LocationManager)context.getSystemService(Context.LOCATION_SERVICE);
+        this.unfilteredList            = unfilteredList;
+        this.recyclerFilterableAdapter = recyclerFilterableAdapter;
+        this.places_locationListener   = new PlacesLocationListener();
+        this.interval                  = 0;
     }
 
     public void setInterval(int seconds) {
@@ -102,18 +104,18 @@ public class PlacesLocationManager {
             @Override
             protected Void doInBackground(final Void ... params) {
 
-                for (int i=0; i < places_arrayList.size(); i++) {
-                    WaypointListItem point = places_arrayList.get(i);
+                for (int i=0; i < unfilteredList.size(); i++) {
+                    WaypointListItem point = (WaypointListItem) unfilteredList.get(i);
                     point.updateDistance(location);
                 }
 
-                Collections.sort(places_arrayList, WaypointListItem.distanceOrderComparator);
+                Collections.sort(unfilteredList, WaypointListItem.distanceOrderComparator);
                 return null;
             }
  
             @Override
             protected void onPostExecute(final Void result) {
-                places_arrayAdapter.notifyDataSetChanged();
+                recyclerFilterableAdapter.notifyDataSetChanged();
             }
         }.execute();
     }

@@ -4,6 +4,11 @@ import com.github.warren_bank.myplaces.helpers.DistanceFormatter;
 import com.github.warren_bank.myplaces.models.WaypointListItem;
 import com.github.warren_bank.myplaces.services.PlacesLocationManager;
 
+import com.github.warren_bank.filterablerecyclerview.FilterableListItem;
+import com.github.warren_bank.filterablerecyclerview.FilterableListItemOnClickListener;
+import com.github.warren_bank.filterablerecyclerview.FilterableViewHolder;
+import com.github.warren_bank.filterablerecyclerview.FilterableAdapter;
+
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
@@ -13,22 +18,21 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.RecyclerView.ViewHolder;
+import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
+import android.widget.Filter;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.File;
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.List;
 
-public class PlacesActivity extends AppCompatActivity {
+public class PlacesActivity extends AppCompatActivity implements FilterableListItemOnClickListener {
 
     // ---------------------------------------------------------------------------------------------
     // Data Structures:
@@ -48,62 +52,51 @@ public class PlacesActivity extends AppCompatActivity {
     // RecyclerView:
     // ---------------------------------------------------------------------------------------------
 
-    private RecyclerView                places_recyclerView;
-    private ArrayList<WaypointListItem> places_arrayList;
-    private PlacesListAdapter           places_arrayAdapter;
+    private List<FilterableListItem>    unfilteredList;
+    private FilterableAdapter           recyclerFilterableAdapter;
+    private RecyclerView                recyclerView;
 
-    private class PlaceItemViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        public final TextView textView_1;
-        public final TextView textView_2;
+    private Filter                      searchFilter;
+    private SearchView                  searchView;
 
-        public PlaceItemViewHolder(View v) {
-            super(v);
-            this.textView_1 = v.findViewById(android.R.id.text1);
-            this.textView_2 = v.findViewById(android.R.id.text2);
-            v.setOnClickListener(this);
+    public class PlacesFilterableViewHolder extends FilterableViewHolder {
+        private TextView text1;
+        private TextView text2;
+
+        public PlacesFilterableViewHolder(
+            View view,
+            List<FilterableListItem> filteredList,
+            FilterableListItemOnClickListener listener
+        ) {
+            super(view, filteredList, listener);
         }
 
         @Override
-        public void onClick(View v) {
-            int position = getAdapterPosition();
-            WaypointListItem place = places_arrayList.get(position);
-            viewPlace(place);
-        }
-    }
-
-    private class PlacesListAdapter extends RecyclerView.Adapter<PlaceItemViewHolder> {
-        @Override
-        public PlaceItemViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-            View v = (View) LayoutInflater.from(parent.getContext()).inflate(R.layout.two_line_list_item, parent, false);
-                // https://github.com/aosp-mirror/platform_frameworks_base/tree/master/core/res/res/layout
-                // https://github.com/aosp-mirror/platform_frameworks_base/blob/master/core/res/res/layout/two_line_list_item.xml
-            return new PlaceItemViewHolder(v);
+        public void onCreate(View view) {
+            text1 = view.findViewById(android.R.id.text1);
+            text2 = view.findViewById(android.R.id.text2);
         }
 
         @Override
-        public void onBindViewHolder(PlaceItemViewHolder holder, int position) {
-            WaypointListItem place = places_arrayList.get(position);
-            holder.textView_1.setText(place.name);
+        public void onUpdate(FilterableListItem filterableListItem) {
+            WaypointListItem place = (WaypointListItem) filterableListItem;
+
+            text1.setText(place.name);
 
             if (sort_order == SORT_OPTION.DISTANCE) {
                 if (place.distance == 0) {
-                    holder.textView_2.setText("finding current location..");
+                    text2.setText("finding current location..");
                 }
                 else {
-                    holder.textView_2.setText(
+                    text2.setText(
                         DistanceFormatter.format((int)place.distance)  // cast float to int
                     );
                 }
-                holder.textView_2.setVisibility(View.VISIBLE);
+                text2.setVisibility(View.VISIBLE);
             }
             else {
-                holder.textView_2.setVisibility(View.GONE);
+                text2.setVisibility(View.GONE);
             }
-        }
-
-        @Override
-        public int getItemCount() {
-            return places_arrayList.size();
         }
     }
 
@@ -154,6 +147,10 @@ public class PlacesActivity extends AppCompatActivity {
         getMenuInflater().inflate(R.menu.activity_places, menu);
 
         menu.findItem(R.id.action_sort_refresh).setVisible(sort_order == SORT_OPTION.DISTANCE);
+
+        searchView = (SearchView) menu.findItem(R.id.action_search).getActionView();
+        initSearch();
+
         return true;
     }
 
@@ -161,6 +158,10 @@ public class PlacesActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem menuItem) {
 
         switch(menuItem.getItemId()) {
+
+            case R.id.action_search: {
+                return true;
+            }
 
             case R.id.action_sort_sequential: {
                 sort_order = SORT_OPTION.SEQUENTIAL;  // the sequential order in which places naturally occur in the XML file
@@ -205,6 +206,15 @@ public class PlacesActivity extends AppCompatActivity {
         }
     }
 
+    @Override
+    public void onBackPressed() {
+        if (!searchView.isIconified()) {
+            searchView.setIconified(true);
+            return;
+        }
+        super.onBackPressed();
+    }
+
     // ---------------------------------------------------------------------------------------------
     // internal:
     // ---------------------------------------------------------------------------------------------
@@ -235,21 +245,28 @@ public class PlacesActivity extends AppCompatActivity {
     }
 
     private void initRecyclerView() {
-        places_arrayList    = WaypointListItem.fromFile(filepath, format);
-        places_arrayAdapter = new PlacesListAdapter();
-        places_recyclerView = (RecyclerView)findViewById(R.id.rv_places);
+        unfilteredList = WaypointListItem.fromFile(filepath, format);
 
-        places_recyclerView.setLayoutManager(new LinearLayoutManager(PlacesActivity.this));
-        places_recyclerView.setHasFixedSize(true);
-        places_recyclerView.setAdapter(places_arrayAdapter);
+        recyclerFilterableAdapter  = new FilterableAdapter(
+            R.layout.two_line_list_item,
+            unfilteredList,
+            PlacesActivity.this,
+            PlacesFilterableViewHolder.class,
+            PlacesActivity.class,
+            PlacesActivity.this
+        );
+
+        recyclerView = findViewById(R.id.rv_places);
+        recyclerView.setLayoutManager(new LinearLayoutManager(PlacesActivity.this));
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setAdapter(recyclerFilterableAdapter);
 
         // add divider between list items
-        places_recyclerView.addItemDecoration(
-            new DividerItemDecoration(
-                    PlacesActivity.this,
-                    DividerItemDecoration.VERTICAL
-                )
+        recyclerView.addItemDecoration(
+            new DividerItemDecoration(PlacesActivity.this, DividerItemDecoration.VERTICAL)
         );
+
+        searchFilter = recyclerFilterableAdapter.getFilter();
     }
 
     private void initSort() {
@@ -258,9 +275,27 @@ public class PlacesActivity extends AppCompatActivity {
 
         places_locationManager = new PlacesLocationManager(
             PlacesActivity.this,
-            places_arrayList,
-            places_arrayAdapter
+            unfilteredList,
+            recyclerFilterableAdapter
         );
+    }
+
+    private void initSearch() {
+        searchView.setMaxWidth(Integer.MAX_VALUE);
+
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                searchFilter.filter(query);
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String query) {
+                searchFilter.filter(query);
+                return false;
+            }
+        });
     }
 
     private void sortRecyclerView() {
@@ -286,13 +321,13 @@ public class PlacesActivity extends AppCompatActivity {
         new AsyncTask<Void, Void, Void>() {
             @Override
             protected Void doInBackground(final Void ... params) {
-                Collections.sort(places_arrayList, comparator);
+                Collections.sort(unfilteredList, comparator);
                 return null;
             }
  
             @Override
             protected void onPostExecute(final Void result) {
-                places_arrayAdapter.notifyDataSetChanged();
+                recyclerFilterableAdapter.notifyDataSetChanged();
             }
         }.execute();
     }
@@ -336,5 +371,12 @@ public class PlacesActivity extends AppCompatActivity {
         }
 
         Toast.makeText(PlacesActivity.this, "No mapping app found", Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onFilterableListItemClick(FilterableListItem item) {
+        WaypointListItem place = (WaypointListItem) item;
+
+        viewPlace(place);
     }
 }

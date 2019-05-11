@@ -4,12 +4,15 @@ import com.github.warren_bank.myplaces.parsers.AbstractParser;
 import com.github.warren_bank.myplaces.parsers.GpxParser;
 import com.github.warren_bank.myplaces.parsers.KmlParser;
 
+import com.github.warren_bank.filterablerecyclerview.FilterableListItem;
+
 import android.location.Location;
 
 import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.List;
 
-public class WaypointListItem {
+public class WaypointListItem implements FilterableListItem {
     public final String lat;
     public final String lon;
     public final String name;
@@ -47,13 +50,20 @@ public class WaypointListItem {
         return name;
     }
 
+    @Override
+    public String getFilterableValue() {
+        return name;
+    }
+
     public boolean equals(WaypointListItem that) {
         if (that == null) return false;
 
         return (this.lat.equals(that.lat) && this.lon.equals(that.lon));
     }
 
-    public static ArrayList<WaypointListItem> fromFile(String filepath, String format) {
+    // Helper
+
+    public static List<FilterableListItem> fromFile(String filepath, String format) {
         AbstractParser parser = null;
 
         switch (format) {
@@ -68,19 +78,23 @@ public class WaypointListItem {
         }
 
         if (parser == null) {
-            return new ArrayList<WaypointListItem>();
+            return new ArrayList<FilterableListItem>();
         }
         else {
-            return parser.parse();
+            ArrayList<WaypointListItem> waypoints = parser.parse();
+            return (List<FilterableListItem>)(List<?>) waypoints;
         }
     }
 
     // Comparator private classes
 
-    private static class SequentialOrderComparator implements Comparator<WaypointListItem> {
+    private static class SequentialOrderComparator implements Comparator<FilterableListItem> {
         @Override
-        public int compare(WaypointListItem a, WaypointListItem b) {
-            if ((a == null) || (b == null)) throw new NullPointerException();
+        public int compare(FilterableListItem x, FilterableListItem y) {
+            if ((x == null) || (y == null)) throw new NullPointerException();
+
+            WaypointListItem a = (WaypointListItem) x;
+            WaypointListItem b = (WaypointListItem) y;
 
             if (a.nonce < b.nonce) return -1;
             if (a.nonce > b.nonce) return 1;
@@ -88,10 +102,13 @@ public class WaypointListItem {
         }
     }
 
-    private static class DistanceOrderComparator implements Comparator<WaypointListItem> {
+    private static class DistanceOrderComparator implements Comparator<FilterableListItem> {
         @Override
-        public int compare(WaypointListItem a, WaypointListItem b) {
-            if ((a == null) || (b == null)) throw new NullPointerException();
+        public int compare(FilterableListItem x, FilterableListItem y) {
+            if ((x == null) || (y == null)) throw new NullPointerException();
+
+            WaypointListItem a = (WaypointListItem) x;
+            WaypointListItem b = (WaypointListItem) y;
 
             if (a.distance < b.distance) return -1;
             if (a.distance > b.distance) return 1;
@@ -99,10 +116,13 @@ public class WaypointListItem {
         }
     }
 
-    private static class AlphabeticOrderComparator implements Comparator<WaypointListItem> {
+    private static class AlphabeticOrderComparator implements Comparator<FilterableListItem> {
         @Override
-        public int compare(WaypointListItem a, WaypointListItem b) {
-            if ((a == null) || (b == null)) throw new NullPointerException();
+        public int compare(FilterableListItem x, FilterableListItem y) {
+            if ((x == null) || (y == null)) throw new NullPointerException();
+
+            WaypointListItem a = (WaypointListItem) x;
+            WaypointListItem b = (WaypointListItem) y;
 
             return a.name.compareTo(b.name);
         }

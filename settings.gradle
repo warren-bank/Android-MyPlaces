@@ -1,2 +1,3 @@
 include ':Android-DirectoryChooser-library'
+include ':FilterableRecyclerView-library'
 include ':MyPlaces'

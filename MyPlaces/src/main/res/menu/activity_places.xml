@@ -2,24 +2,36 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
+        android:id="@+id/action_search"
+        app:actionViewClass="android.support.v7.widget.SearchView"
+        android:orderInCategory="1"
+        android:title="@string/action_search"
+        android:icon="@drawable/baseline_search_black_24"
+        app:showAsAction="always" />
+    <item
         android:id="@+id/action_sort_refresh"
+        android:orderInCategory="2"
         android:title="@string/action_sort_refresh"
         android:icon="@drawable/ic_sort_refresh"
         app:showAsAction="always" />
     <item
         android:id="@+id/action_sort_sequential"
+        android:orderInCategory="3"
         android:title="@string/action_sort_sequential"
         app:showAsAction="never" />
     <item
         android:id="@+id/action_sort_alphabetic"
+        android:orderInCategory="4"
         android:title="@string/action_sort_alphabetic"
         app:showAsAction="never" />
     <item
         android:id="@+id/action_sort_distance"
+        android:orderInCategory="5"
         android:title="@string/action_sort_distance"
         app:showAsAction="never" />
     <item
         android:id="@+id/action_exit"
+        android:orderInCategory="6"
         android:title="@string/action_exit"
         app:showAsAction="never" />
 </menu>

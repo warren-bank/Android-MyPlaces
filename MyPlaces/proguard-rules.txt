@@ -27,3 +27,5 @@
 -dontwarn javax.xml.bind.**
 -dontnote javax.xml.bind.**
 -dontnote org.joox.Util
+
+-keep class com.github.warren_bank.myplaces.** { *; }
