@@ -378,4 +378,11 @@ public class PlacesActivity extends AppCompatActivity implements FilterableListI
 
         viewPlace(place);
     }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+
+        places_locationManager.onRequestPermissionsResult(requestCode, permissions, grantResults);
+    }
 }
