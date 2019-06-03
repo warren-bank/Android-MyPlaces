@@ -1,12 +1,11 @@
 package com.github.warren_bank.filterablerecyclerview;
 
-import android.support.v7.widget.RecyclerView;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Filter;
 import android.widget.Filterable;
+import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,6 +18,22 @@ public class FilterableAdapter extends RecyclerView.Adapter<FilterableViewHolder
     final private Class filterableViewHolderClass;
     final private Class parentClass;
     final private Object parentInstance;
+
+    public FilterableAdapter(
+        int row_layout_id,
+        List<FilterableListItem> unfilteredList,
+        FilterableListItemOnClickListener listener,
+        Class filterableViewHolderClass
+    ) {
+        this(
+            row_layout_id,
+            unfilteredList,
+            listener,
+            filterableViewHolderClass,
+            (Class) null,
+            (Object) null
+        );
+    }
 
     public FilterableAdapter(
         int row_layout_id,

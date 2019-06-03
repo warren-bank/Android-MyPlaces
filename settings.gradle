@@ -1,3 +1,7 @@
-include ':Android-DirectoryChooser-library'
-include ':FilterableRecyclerView-library'
 include ':MyPlaces'
+
+include ':DirectoryChooser'
+include ':FilterableRecyclerView'
+
+project(':DirectoryChooser'      ).projectDir = new File(rootDir, 'libs/Android-DirectoryChooser-library')
+project(':FilterableRecyclerView').projectDir = new File(rootDir, 'libs/FilterableRecyclerView-library')
