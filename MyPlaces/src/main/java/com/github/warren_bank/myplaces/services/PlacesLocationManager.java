@@ -133,7 +133,7 @@ public class PlacesLocationManager {
  
             @Override
             protected void onPostExecute(final Void result) {
-                recyclerFilterableAdapter.notifyDataSetChanged();
+                recyclerFilterableAdapter.refresh();
             }
         }.execute();
     }
