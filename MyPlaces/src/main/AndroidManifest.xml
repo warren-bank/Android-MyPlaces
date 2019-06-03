@@ -30,6 +30,9 @@
             android:theme="@style/AppTheme.NoActionBar" />
 
         <activity
+            android:name=".ExitActivity" />
+
+        <activity
             android:name="net.rdrei.android.dirchooser.DirectoryChooserActivity"
             android:configChanges="colorMode|density|fontScale|keyboard|keyboardHidden|layoutDirection|locale|mcc|mnc|navigation|orientation|screenLayout|screenSize|smallestScreenSize|touchscreen|uiMode"
             android:theme="@style/AppTheme.NoActionBar" />

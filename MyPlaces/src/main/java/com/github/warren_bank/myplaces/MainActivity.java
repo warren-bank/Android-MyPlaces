@@ -167,7 +167,7 @@ public class MainActivity extends AppCompatActivity {
             }
 
             case R.id.action_exit: {
-                finish();
+                ExitActivity.open(MainActivity.this);
                 return true;
             }
 

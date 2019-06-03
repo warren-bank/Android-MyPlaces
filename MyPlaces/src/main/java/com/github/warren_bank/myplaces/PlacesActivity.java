@@ -195,7 +195,7 @@ public class PlacesActivity extends AppCompatActivity implements FilterableListI
             }
 
             case R.id.action_exit: {
-                finish();
+                ExitActivity.open(PlacesActivity.this);
                 return true;
             }
 
