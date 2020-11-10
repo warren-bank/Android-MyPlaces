@@ -1,10 +1,11 @@
 project.ext {
-    releaseVersionCode = 005000414
-    releaseVersion = '005.00.04-14API'
-    minSdkVersion = 14
-    targetSdkVersion = 28
-    compileSdkVersion = 28
-    buildToolsVersion = '28.0.3'
-    javaVersion = JavaVersion.VERSION_1_8
-    jetpackVersion = '1.0.0'
+  releaseVersionCode = Integer.parseInt("005000414", 10)  //Integer.MAX_VALUE == 2147483647
+  releaseVersion     = '005.00.04-14API'
+  javaVersion        = JavaVersion.VERSION_1_8
+  minSdkVersion      = 14
+  targetSdkVersion   = 28
+  compileSdkVersion  = 28
+  buildToolsVersion  = '28.0.3'
+
+  jetpackVersion     = '1.0.0'
 }
