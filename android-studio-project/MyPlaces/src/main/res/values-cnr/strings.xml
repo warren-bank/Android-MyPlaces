@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">MyPlaces</string>
+    <string name="action_exit">Jedan izlaz.</string>
+    <string name="action_change_directory">Jedan direktorij za promjenu.</string>
+    <string name="action_search">Traži ga.</string>
+    <string name="action_sort_refresh">Jedno osvježavanje.</string>
+    <string name="action_sort_sequential">Neka vrsta sekvencijalnog</string>
+    <string name="action_sort_alphabetic">Po abecednom redu.</string>
+    <string name="action_sort_distance">Jedna sorta po daljinu.</string>
+</resources>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">MyPlaces</string>
+    <string name="action_exit">പ്രദര്ശിപ്പിക്കുക</string>
+    <string name="action_change_directory">ഡയറക്ടറി മാറ്റുക</string>
+    <string name="action_search">തെരയുക</string>
+    <string name="action_sort_refresh">ക്രമീകരണം പുതുക്കുക</string>
+    <string name="action_sort_sequential">Sequentially Sort</string>
+    <string name="action_sort_alphabetic">Alphabetic Sort</string>
+    <string name="action_sort_distance">ദൂരം പ്രദര്ശിപ്പിക്കുക</string>
+</resources>

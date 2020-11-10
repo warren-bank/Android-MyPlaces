@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">MyPlaces</string>
+    <string name="action_exit">Izhod</string>
+    <string name="action_change_directory">Spremeni imenik</string>
+    <string name="action_search">Iskanje</string>
+    <string name="action_sort_refresh">Osveži razvrstitev</string>
+    <string name="action_sort_sequential">Vrstni red razvrščanja</string>
+    <string name="action_sort_alphabetic">Razvrsti Abecedni</string>
+    <string name="action_sort_distance">Razvrsti po distanci</string>
+</resources>

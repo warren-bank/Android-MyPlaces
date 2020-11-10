@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">MyPlaces</string>
+    <string name="action_exit">Gadael</string>
+    <string name="action_change_directory">Newid Cyfeiriadur</string>
+    <string name="action_search">Chwilio</string>
+    <string name="action_sort_refresh">_Adnewyddu Trefnu</string>
+    <string name="action_sort_sequential">Trefnu Dilyniad</string>
+    <string name="action_sort_alphabetic">Trefnu yn yr wyddor</string>
+    <string name="action_sort_distance">Trefnu o bell</string>
+</resources>

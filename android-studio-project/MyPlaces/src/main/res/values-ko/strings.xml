@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">MyPlaces</string>
+    <string name="action_exit">종료</string>
+    <string name="action_change_directory">디렉토리 변경</string>
+    <string name="action_search">검색</string>
+    <string name="action_sort_refresh">정렬 새로 고치기</string>
+    <string name="action_sort_sequential">순차적으로 정렬하기</string>
+    <string name="action_sort_alphabetic">알파벳순 정렬</string>
+    <string name="action_sort_distance">거리별 정렬</string>
+</resources>

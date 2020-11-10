@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">MyPlaces</string>
+    <string name="action_exit">Ħruġ</string>
+    <string name="action_change_directory">Bidla Direttorju</string>
+    <string name="action_search">Fittex</string>
+    <string name="action_sort_refresh">Nġeddu</string>
+    <string name="action_sort_sequential">Tip Sekwenzjali</string>
+    <string name="action_sort_alphabetic">Tip Alfabetiku</string>
+    <string name="action_sort_distance">Tip mill-Distanza</string>
+</resources>

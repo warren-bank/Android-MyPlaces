@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">MyPlaces</string>
+    <string name="action_exit">வெளியேறு</string>
+    <string name="action_change_directory">அடைவை மாற்று</string>
+    <string name="action_search">தேடு</string>
+    <string name="action_sort_refresh">வரிசைப்படுத்து</string>
+    <string name="action_sort_sequential">செங்குத்தாக வரிசைப்படுத்து</string>
+    <string name="action_sort_alphabetic">Alphabetic வரிசைப்படுத்து</string>
+    <string name="action_sort_distance">தொட்டி மூலம் வரிசைப்படுத்து</string>
+</resources>

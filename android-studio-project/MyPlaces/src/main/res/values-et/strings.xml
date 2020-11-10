@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">MyPlaces</string>
+    <string name="action_exit">Välju</string>
+    <string name="action_change_directory">Kataloogi muutmine</string>
+    <string name="action_search">Otsing</string>
+    <string name="action_sort_refresh">Värskenda</string>
+    <string name="action_sort_sequential">Sorteeri järjestikuselt</string>
+    <string name="action_sort_alphabetic">Sorteeri tähestikuline</string>
+    <string name="action_sort_distance">Sorteeri kaupa</string>
+</resources>

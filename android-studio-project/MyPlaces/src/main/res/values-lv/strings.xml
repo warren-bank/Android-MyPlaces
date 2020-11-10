@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">MyPlaces</string>
+    <string name="action_exit">Iziešana</string>
+    <string name="action_change_directory">Mainīt mapi</string>
+    <string name="action_search">Meklēt</string>
+    <string name="action_sort_refresh">Atsvaidzināt kārtot</string>
+    <string name="action_sort_sequential">Kārtot secīgi</string>
+    <string name="action_sort_alphabetic">Kārtot alfabētiskos</string>
+    <string name="action_sort_distance">Kārtot pēc attāluma</string>
+</resources>

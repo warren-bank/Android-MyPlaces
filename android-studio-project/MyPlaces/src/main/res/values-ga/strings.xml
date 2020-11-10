@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">MyPlaces</string>
+    <string name="action_exit">Scoir</string>
+    <string name="action_change_directory">Athraigh Comhadlann</string>
+    <string name="action_search">Cuardaigh</string>
+    <string name="action_sort_refresh">Athnuaigh an Sórtáil</string>
+    <string name="action_sort_sequential">Sórtáil An Taifead</string>
+    <string name="action_sort_alphabetic">Sórtáil Alphabetic</string>
+    <string name="action_sort_distance">Sórtáil de réir Gháis</string>
+</resources>

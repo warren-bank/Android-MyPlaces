@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">MyPlaces</string>
+    <string name="action_exit">Çıkış</string>
+    <string name="action_change_directory">Dizini Değiştir</string>
+    <string name="action_search">Ara</string>
+    <string name="action_sort_refresh">Sıralamayı Yenile</string>
+    <string name="action_sort_sequential">Sıralı Olarak Sırala</string>
+    <string name="action_sort_alphabetic">Alfabetik Düzende Sırala</string>
+    <string name="action_sort_distance">Uzaklığa göre sırala</string>
+</resources>

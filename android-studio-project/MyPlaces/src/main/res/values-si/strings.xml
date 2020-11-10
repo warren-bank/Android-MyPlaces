@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">MyPlaces</string>
+    <string name="action_exit">Exit</string>
+    <string name="action_change_directory">බහලුම වෙනස් කරන්න</string>
+    <string name="action_search">සොයන්න</string>
+    <string name="action_sort_refresh">නැවත නැවුම් කරන්න</string>
+    <string name="action_sort_sequential">Sequentially Sort</string>
+    <string name="action_sort_alphabetic">Alphabetic</string>
+    <string name="action_sort_distance">\@ option: check</string>
+</resources>

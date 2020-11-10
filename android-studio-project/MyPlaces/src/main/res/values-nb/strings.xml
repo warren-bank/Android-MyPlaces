@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">MyPlaces</string>
+    <string name="action_exit">Avslutt</string>
+    <string name="action_change_directory">Endre katalog</string>
+    <string name="action_search">Søk</string>
+    <string name="action_sort_refresh">Oppdater sortering</string>
+    <string name="action_sort_sequential">Sorter sekvensielt</string>
+    <string name="action_sort_alphabetic">Sorter Alphabetisk</string>
+    <string name="action_sort_distance">Sorter etter avstand</string>
+</resources>

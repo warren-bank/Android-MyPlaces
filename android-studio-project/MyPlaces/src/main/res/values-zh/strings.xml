@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">MyPlaces</string>
+    <string name="action_exit">退出</string>
+    <string name="action_change_directory">更改目录</string>
+    <string name="action_search">搜索</string>
+    <string name="action_sort_refresh">刷新排序</string>
+    <string name="action_sort_sequential">按顺序排序</string>
+    <string name="action_sort_alphabetic">排序字母</string>
+    <string name="action_sort_distance">按距离排序</string>
+</resources>

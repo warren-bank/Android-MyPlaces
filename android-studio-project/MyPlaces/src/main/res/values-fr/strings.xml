@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">MyPlaces</string>
+    <string name="action_exit">Quitter</string>
+    <string name="action_change_directory">Modifier le répertoire</string>
+    <string name="action_search">Rechercher</string>
+    <string name="action_sort_refresh">Actualiser le tri</string>
+    <string name="action_sort_sequential">Tri séquentiel</string>
+    <string name="action_sort_alphabetic">Trier par ordre alphabétique</string>
+    <string name="action_sort_distance">Trier par distance</string>
+</resources>

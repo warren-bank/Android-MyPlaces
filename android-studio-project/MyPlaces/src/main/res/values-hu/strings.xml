@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">MyPlaces</string>
+    <string name="action_exit">Kilép</string>
+    <string name="action_change_directory">Könyvtár módosítása</string>
+    <string name="action_search">Keresés</string>
+    <string name="action_sort_refresh">Rendezés frissítése</string>
+    <string name="action_sort_sequential">Rendezés egymás között</string>
+    <string name="action_sort_alphabetic">Rendezés Alphabetic</string>
+    <string name="action_sort_distance">Rendezés távolság szerint</string>
+</resources>

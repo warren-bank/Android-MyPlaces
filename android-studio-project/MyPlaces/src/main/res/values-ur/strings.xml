@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">MyPlaces</string>
+    <string name="action_exit">باہر نکلیں</string>
+    <string name="action_change_directory">سمت تبدیل</string>
+    <string name="action_search">تلاش</string>
+    <string name="action_sort_refresh">تازہ دم</string>
+    <string name="action_sort_sequential">دھیرے-دھیرے-دھیرے</string>
+    <string name="action_sort_alphabetic">حروف تہجی الف</string>
+    <string name="action_sort_distance">فاصلہ بہ دور</string>
+</resources>

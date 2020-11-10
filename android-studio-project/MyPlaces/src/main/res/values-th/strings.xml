@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">MyPlaces</string>
+    <string name="action_exit">ออก</string>
+    <string name="action_change_directory">เปลี่ยนไดเร็กทอรี</string>
+    <string name="action_search">การค้นหา</string>
+    <string name="action_sort_refresh">รีเฟรชการเรียงลำดับ</string>
+    <string name="action_sort_sequential">เรียงลำดับตามลำดับ</string>
+    <string name="action_sort_alphabetic">เรียงลำดับตามตัวอักษร</string>
+    <string name="action_sort_distance">เรียงลำดับตามระยะทาง</string>
+</resources>

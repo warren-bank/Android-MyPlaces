@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">MyPlaces</string>
+    <string name="action_exit">Ieşire</string>
+    <string name="action_change_directory">Modificare director</string>
+    <string name="action_search">Căutare</string>
+    <string name="action_sort_refresh">Reîmprospătare sortare</string>
+    <string name="action_sort_sequential">Sortare secvenţială</string>
+    <string name="action_sort_alphabetic">Sortare alfabetică</string>
+    <string name="action_sort_distance">Sortare după distanţă</string>
+</resources>

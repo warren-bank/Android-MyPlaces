@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">MyPlaces</string>
+    <string name="action_exit">Ukončit</string>
+    <string name="action_change_directory">Změnit adresář</string>
+    <string name="action_search">Prohledat</string>
+    <string name="action_sort_refresh">Obnovit řazení</string>
+    <string name="action_sort_sequential">Setřídit sekvenčně</string>
+    <string name="action_sort_alphabetic">Řadit abecedně</string>
+    <string name="action_sort_distance">Řadit podle vzdálenosti</string>
+</resources>

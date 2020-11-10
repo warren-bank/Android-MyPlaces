@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">MyPlaces</string>
+    <string name="action_exit">出口</string>
+    <string name="action_change_directory">ディレクトリー変更</string>
+    <string name="action_search">サーチ</string>
+    <string name="action_sort_refresh">ソートの更新</string>
+    <string name="action_sort_sequential">順方向にソート</string>
+    <string name="action_sort_alphabetic">英字のソート</string>
+    <string name="action_sort_distance">距離でソート</string>
+</resources>

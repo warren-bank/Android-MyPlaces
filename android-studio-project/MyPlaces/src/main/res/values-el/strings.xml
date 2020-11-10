@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">MyPlaces</string>
+    <string name="action_exit">Έξοδος:</string>
+    <string name="action_change_directory">Αλλαγή καταλόγου:</string>
+    <string name="action_search">Αναζήτηση.</string>
+    <string name="action_sort_refresh">Ανανέωση: Ταξινόμηση</string>
+    <string name="action_sort_sequential">Ταξινόμηση Κατά Σειρά</string>
+    <string name="action_sort_alphabetic">Αλφαβητική ταξινόμηση</string>
+    <string name="action_sort_distance">Ταξινόμηση κατά απόσταση</string>
+</resources>

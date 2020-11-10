@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">MyPlaces</string>
+    <string name="action_exit">Keluar</string>
+    <string name="action_change_directory">Ubah Direktori</string>
+    <string name="action_search">Cari</string>
+    <string name="action_sort_refresh">Segarkan</string>
+    <string name="action_sort_sequential">Urutkan Secara Berurutan</string>
+    <string name="action_sort_alphabetic">Urutkan Alfabetis</string>
+    <string name="action_sort_distance">Urutkan menurut Jarak</string>
+</resources>

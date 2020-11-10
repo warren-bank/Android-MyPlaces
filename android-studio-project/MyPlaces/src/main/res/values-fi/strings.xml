@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">MyPlaces</string>
+    <string name="action_exit">Poistuminen</string>
+    <string name="action_change_directory">Muuta hakemisto</string>
+    <string name="action_search">Hae</string>
+    <string name="action_sort_refresh">Päivitä lajittelu</string>
+    <string name="action_sort_sequential">Lajittele Sequentiaalisesti</string>
+    <string name="action_sort_alphabetic">Lajittele alfasetti</string>
+    <string name="action_sort_distance">Lajittele etäisyyden mukaan</string>
+</resources>

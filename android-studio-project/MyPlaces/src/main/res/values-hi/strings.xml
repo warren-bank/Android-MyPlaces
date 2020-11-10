@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">MyPlaces</string>
+    <string name="action_exit">बाहर निकलें</string>
+    <string name="action_change_directory">डिरेक्ट्री बदलें</string>
+    <string name="action_search">ढूंढें</string>
+    <string name="action_sort_refresh">छांटें</string>
+    <string name="action_sort_sequential">क्रमबद्ध रूप से छांटें</string>
+    <string name="action_sort_alphabetic">वर्णानुक्रम</string>
+    <string name="action_sort_distance">दूरी से छांटें</string>
+</resources>

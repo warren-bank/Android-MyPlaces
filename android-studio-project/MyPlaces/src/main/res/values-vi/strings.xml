@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">MyPlaces</string>
+    <string name="action_exit">Thoát</string>
+    <string name="action_change_directory">Thư mục</string>
+    <string name="action_search">Tìm kiếm</string>
+    <string name="action_sort_refresh">Làm mới</string>
+    <string name="action_sort_sequential">Sắp xếp theo tuần tự</string>
+    <string name="action_sort_alphabetic">Sắp xếp chữ cái</string>
+    <string name="action_sort_distance">Phân loại theo khoảng cách</string>
+</resources>

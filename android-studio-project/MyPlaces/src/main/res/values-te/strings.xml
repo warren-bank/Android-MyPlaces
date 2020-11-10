@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">MyPlaces</string>
+    <string name="action_exit">ఎక్విట్</string>
+    <string name="action_change_directory">డైరెక్టరీను మార్చుము</string>
+    <string name="action_search">\@ info: status</string>
+    <string name="action_sort_refresh">(R) పునర్వచనము</string>
+    <string name="action_sort_sequential">అన్వేషణ</string>
+    <string name="action_sort_alphabetic">ఆల్ఫాబెటిక్</string>
+    <string name="action_sort_distance">\@ option: check</string>
+</resources>

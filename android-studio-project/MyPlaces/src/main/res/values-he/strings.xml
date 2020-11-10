@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">MyPlaces</string>
+    <string name="action_exit">יציאה</string>
+    <string name="action_change_directory">שינוי מדריך</string>
+    <string name="action_search">חיפוש</string>
+    <string name="action_sort_refresh">רענון מיון</string>
+    <string name="action_sort_sequential">מיון לפי הסדר</string>
+    <string name="action_sort_alphabetic">למיין בסדר אלפביתי</string>
+    <string name="action_sort_distance">מיון לפי מרחק</string>
+</resources>

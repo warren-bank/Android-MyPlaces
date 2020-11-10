@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">MyPlaces</string>
+    <string name="action_exit">Выход</string>
+    <string name="action_change_directory">Изменить каталог</string>
+    <string name="action_search">Поиск</string>
+    <string name="action_sort_refresh">Обновить сортировку</string>
+    <string name="action_sort_sequential">Сортировать по последовательным</string>
+    <string name="action_sort_alphabetic">Сортировка по алфавиту</string>
+    <string name="action_sort_distance">Сортировать по расстояний</string>
+</resources>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">MyPlaces</string>
+    <string name="action_exit">Išvykimas</string>
+    <string name="action_change_directory">Keisti aplanką</string>
+    <string name="action_search">Ieškoti</string>
+    <string name="action_sort_refresh">Atnaujinti rikiuoti</string>
+    <string name="action_sort_sequential">Rikiuoti paeiliui</string>
+    <string name="action_sort_alphabetic">Rikiuoti abėcėlę</string>
+    <string name="action_sort_distance">Rikiuoti pagal atstumą</string>
+</resources>
