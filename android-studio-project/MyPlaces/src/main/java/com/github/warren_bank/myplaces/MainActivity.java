@@ -85,7 +85,15 @@ public class MainActivity extends AppCompatActivity {
                 return arrayList;
             }
 
-            File[] allFiles = directory.listFiles();
+            File[] allFiles;
+            try {
+                allFiles = directory.listFiles();
+                if ((allFiles == null) || (allFiles.length == 0)) throw new Exception();
+            }
+            catch(Exception e) {
+                return arrayList;
+            }
+
             File   thisFile;
             String filepath;
             String filename;
