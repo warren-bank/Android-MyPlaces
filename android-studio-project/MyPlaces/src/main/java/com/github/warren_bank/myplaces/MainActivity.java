@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.Environment;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -179,7 +180,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void openDirectoryChooser() {
         String initialDirectory = getDirpath();
-        if (initialDirectory == null) initialDirectory = "/";
+        if (initialDirectory == null) initialDirectory = Environment.getExternalStorageDirectory().getAbsolutePath();
 
         final Intent in = new Intent(
                   MainActivity.this,
