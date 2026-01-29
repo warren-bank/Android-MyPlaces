@@ -2,27 +2,27 @@ apply from: '../../constants.gradle'
 apply plugin: 'com.android.library'
 
 android {
-    compileSdkVersion project.ext.compileSdkVersion
-    buildToolsVersion project.ext.buildToolsVersion
+  namespace 'com.github.warren_bank.filterablerecyclerview'
 
-    compileOptions {
-        sourceCompatibility project.ext.javaVersion
-        targetCompatibility project.ext.javaVersion
-    }
+  compileSdkVersion project.ext.compileSdkVersion
+  buildToolsVersion project.ext.buildToolsVersion
 
-    defaultConfig {
-        minSdkVersion project.ext.minSdkVersion
-        targetSdkVersion project.ext.targetSdkVersion
-    }
+  compileOptions {
+    sourceCompatibility project.ext.javaVersion
+    targetCompatibility project.ext.javaVersion
+  }
 
-    lintOptions {
-        disable 'MissingTranslation'
-        abortOnError true
-    }
+  defaultConfig {
+    minSdkVersion    project.ext.minSdkVersion
+    targetSdkVersion project.ext.targetSdkVersion
+  }
+
+  lintOptions {
+    disable 'MissingTranslation'
+    abortOnError true
+  }
 }
 
 dependencies {
-    implementation 'androidx.recyclerview:recyclerview:'    + project.ext.jetpackVersion          // (344 KB) https://mvnrepository.com/artifact/androidx.recyclerview/recyclerview?repo=google
+  implementation 'androidx.recyclerview:recyclerview:' + project.ext.jetpackVersion     // (344 KB) https://mvnrepository.com/artifact/androidx.recyclerview/recyclerview?repo=google
 }
-
-apply plugin: 'com.google.android.gms.strict-version-matcher-plugin'

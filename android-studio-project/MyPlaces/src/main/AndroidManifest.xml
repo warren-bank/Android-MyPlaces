@@ -1,23 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          xmlns:tools="http://schemas.android.com/tools"
-          package="com.github.warren_bank.myplaces">
+<manifest
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.github.warren_bank.myplaces">
 
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
-        android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
+        android:theme="@style/AppTheme"
         android:label="@string/app_name"
-        android:theme="@style/AppTheme">
+        android:allowBackup="true">
 
         <activity
             android:name=".MainActivity"
             android:configChanges="colorMode|density|fontScale|keyboard|keyboardHidden|layoutDirection|locale|mcc|mnc|navigation|orientation|screenLayout|screenSize|smallestScreenSize|touchscreen|uiMode"
             android:theme="@style/AppTheme.NoActionBar"
             android:label="@string/app_name"
-            android:launchMode="standard">
+            android:launchMode="standard"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -27,15 +28,21 @@
         <activity
             android:name=".PlacesActivity"
             android:configChanges="colorMode|density|fontScale|keyboard|keyboardHidden|layoutDirection|locale|mcc|mnc|navigation|orientation|screenLayout|screenSize|smallestScreenSize|touchscreen|uiMode"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar"
+            android:launchMode="standard"
+            android:exported="false" />
 
         <activity
-            android:name=".ExitActivity" />
+            android:name=".ExitActivity"
+            android:launchMode="standard"
+            android:exported="false" />
 
         <activity
             android:name="net.rdrei.android.dirchooser.DirectoryChooserActivity"
             android:configChanges="colorMode|density|fontScale|keyboard|keyboardHidden|layoutDirection|locale|mcc|mnc|navigation|orientation|screenLayout|screenSize|smallestScreenSize|touchscreen|uiMode"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar"
+            android:launchMode="standard"
+            android:exported="false" />
 
     </application>
 </manifest>
